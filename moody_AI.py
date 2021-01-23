@@ -3,13 +3,9 @@ import os
 import playsound
 import speech_recognition as sr
 #import pyttsx3
-import subprocess
-import webbrowser
-import tkinter
-import requests
-import datetime
-import wolframalpha
 from gtts import gTTS
+import random
+import pygame
 
 '''
 def speak(text):
@@ -50,6 +46,13 @@ def get_audio():
 speak("hello illuminati. how are you feeling today?")
 name = "illuminati"
 
+#songs directory
+path = "C:/Users/rijul/Desktop/sample_songs/"
+all_mp3 = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.mp3')]
+randomfile = random.choice(all_mp3)
+pygame.mixer.init()
+pygame.mixer.music.load(randomfile)
+
 #speak("okay, "+name+" , say hello amanda to activate me")
 
 wake = "hello amanda"
@@ -60,7 +63,7 @@ while True:
 
     GOOD_STRS = ["good","happy","lucky","great"]
     BAD_STRS = ["bad","sad","depressed"]
-    STRESS_STR = ["tensed","stressed"]
+    STRESS_STRS = ["tensed","stressed"]
 
     if text.count(wake) > 0:
         speak("hello, "+name+" ,how can i help you?")
@@ -71,77 +74,25 @@ while True:
             continue
 
         for good in GOOD_STRS:
-            if words in comm:
+            if good in comm:
                 speak("awesome! i have the perfect song in store for you")
-                continue
+                pygame.mixer.music.play()
+                
 
-        if "nothing" in comm:
-            speak("okay. just say hello amanda to activate me")
-            continue
-            
-        elif "chrome" in comm:
-            speak("opening chrome")
-            chrome()
+        for bad in BAD_STRS:
+            if bad in comm:
+                speak("let me cheer you up by playing a wonderful song!")
+                pygame.mixer.music.play()
 
-        elif "mozilla" in comm:
-            speak("opening mozilla")
-            mozilla()
-
-        elif "change my name" in comm:
-            speak("what would you want me to set your new name?")
-
-            try:
-                name = get_audio().lower()
-            except :
-                speak("sorry i didn't hear you")
-                continue
-
-            speak("okay, "+name+" ,i have changed your name in my database")
-
-        elif "youtube" in comm:
-            speak("opening youtube")
-            webbrowser.open("youtube.com")
-
-        elif "google" in comm:
-            speak("opening google")
-            webbrowser.open("google.com")
-
-        elif "wikipedia" in comm:
-            speak("opening wikipedia")
-            webbrowser.open("wikipedia.com")
-
-        elif "facebook" in comm:
-            speak("opening facebook")
-            webbrowser.open("facebook.com")
-
-        elif "weather" in comm:
-            speak("scanning your area with satellites all around the world")
-            weather()
-
-        elif "time" and "now" in comm:
-            abhi = datetime.datetime.now()
-            print(abhi)
-            speak("the time has been displayed on the screen!")
-            
-        elif "shutdown" or "switch off" in comm:          
-            option = get_audio().lower()
-            subprocess.call('shutdown / p /f')
-
-        elif "pdf" and "reader" in comm:
-            speak("opening p,d,f reader")
-            pdf()
-
-        elif "what is" in query or "who is" in query: 
-            client = wolframalpha.Client("API_ID") 
-            res = client.query(query) 
-              
-            try: 
-                print (next(res.results).text) 
-                speak (next(res.results).text) 
-            except StopIteration: 
-                print ("No results")
+                
+        for stress in STRESS_STRS:
+            if stress in comm:
+                speak("dont feel low. I will play something to uplift your mind.")
+                pygame.mixer.music.play()
+                
         
-        speak("just say hello amanda to reactivate me")
+
+
 
         
 
@@ -153,15 +104,5 @@ while True:
 
 
 
-import os
-import random
-import pygame
 
-path = "C:/Users/rijul/Desktop/sample_songs/"
-all_mp3 = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.mp3')]
 
-randomfile = random.choice(all_mp3)
-
-pygame.mixer.init()
-pygame.mixer.music.load(randomfile)
-pygame.mixer.music.play()
