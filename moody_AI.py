@@ -33,13 +33,12 @@ def get_audio():
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(source, duration = 1)
         audio = r.listen(source)
-    #try:
-    command = r.recognize_google(audio)
-    print('You said: ' + command)
-    #except sr.UnknownValueError:
-    #print("voice not clear")
-        
-        
+    try:
+        command = r.recognize_google(audio)
+        print('You said: ' + command)
+    except sr.UnknownValueError:
+        print("voice not clear")
+            
     return command
 
 
@@ -111,6 +110,8 @@ while True:
                 speak("here you go sir!")
                 pygame.mixer.music.load(random_motivation)
                 pygame.mixer.music.play()
+
+
                 
         
 
