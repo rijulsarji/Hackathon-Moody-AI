@@ -54,10 +54,10 @@ bad_path = "C:/Users/rijul/output/moody_AI/"
 stress_path = "C:/Users/rijul/output/moody_AI/"
 motivation_path = "C:/Users/rijul/output/moody_AI/"
 
-good_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('1.mp3')]
-bad_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('2.mp3')]
-stress_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('3.mp3')]
-motivation_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('4.mp3')]
+good_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('good.mp3')]
+bad_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('bad.mp3')]
+stress_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('stress.mp3')]
+motivation_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('motiv.mp3')]
 
 random_good = random.choice(good_mp3)
 random_bad = random.choice(bad_mp3)
