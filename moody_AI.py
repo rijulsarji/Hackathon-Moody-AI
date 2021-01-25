@@ -45,16 +45,19 @@ def get_audio():
 speak("hello illuminati. how are you feeling today?")
 name = "illuminati"
 
-#songs directory
-good_path = "C:/Users/rijul/Desktop/good_songs/"
-bad_path = "C:/Users/rijul/Desktop/bad_songs/"
-stress_path = "C:/Users/rijul/Desktop/stress_songs/"
-motivation_path =  "C:/Users/rijul/Desktop/motivation_songs/"
+my_dir = os.getcwd()
 
-good_mp3 = [os.path.join(good_path, f) for f in os.listdir(good_path) if f.endswith('.mp3')]
-bad_mp3 = [os.path.join(bad_path, f) for f in os.listdir(bad_path) if f.endswith('.mp3')]
-stress_mp3 = [os.path.join(stress_path, f) for f in os.listdir(stress_path) if f.endswith('.mp3')]
-motivation_mp3 = [os.path.join(motivation_path, f) for f in os.listdir(motivation_path) if f.endswith('.mp3')]
+
+#songs directory
+good_path = "C:/Users/rijul/output/moody_AI/"
+bad_path = "C:/Users/rijul/output/moody_AI/"
+stress_path = "C:/Users/rijul/output/moody_AI/"
+motivation_path = "C:/Users/rijul/output/moody_AI/"
+
+good_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('1.mp3')]
+bad_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('2.mp3')]
+stress_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('3.mp3')]
+motivation_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('4.mp3')]
 
 random_good = random.choice(good_mp3)
 random_bad = random.choice(bad_mp3)
