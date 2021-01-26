@@ -54,10 +54,10 @@ bad_path = "C:/Users/rijul/output/moody_AI/"
 stress_path = "C:/Users/rijul/output/moody_AI/"
 motivation_path = "C:/Users/rijul/output/moody_AI/"
 
-good_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('good.mp3')]
-bad_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('bad.mp3')]
-stress_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('stress.mp3')]
-motivation_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('motiv.mp3')]
+good_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('1.mp3')]
+bad_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('2.mp3')]
+stress_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('3.mp3')]
+motivation_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('4.mp3')]
 
 random_good = random.choice(good_mp3)
 random_bad = random.choice(bad_mp3)
@@ -69,8 +69,11 @@ pygame.mixer.init()
 
 #speak("okay, "+name+" , say hello amanda to activate me")
 
-wake = "hello amanda"
-num = 0
+wake = "hello google"
+numGood = 0
+numBad = 0
+numStress = 0
+numMotivation = 0
 
 while True:
     text=get_audio().lower()
@@ -91,28 +94,53 @@ while True:
         for good in GOOD_STRS:
             if good in comm:
                 speak("awesome! i have the perfect song in store for you")
-                pygame.mixer.music.load(random_good)
-                pygame.mixer.music.play()
-                
+                #pygame.mixer.music.load(random_good)
+                #pygame.mixer.music.play()
+                numGood=1
+                break
+        if numGood==1:
+            break
 
         for bad in BAD_STRS:
             if bad in comm:
                 speak("let me cheer you up by playing a wonderful song!")
-                pygame.mixer.music.load(random_bad)
-                pygame.mixer.music.play()
-
+                #pygame.mixer.music.load(random_bad)
+                #pygame.mixer.music.play()
+                numBad=1
+                break
+        if numBad==1:
+            break
                 
         for stress in STRESS_STRS:
             if stress in comm:
                 speak("dont feel low. I will play something to uplift your mind.")
-                pygame.mixer.music.load(random_stress)
-                pygame.mixer.music.play()
-
+                #pygame.mixer.music.load(random_stress)
+                #pygame.mixer.music.play()
+                numStress=1
+                break
+        if numStress==1:
+            break
         for motivation in MOTIVATION_STRS:
             if motivation in comm:
                 speak("here you go sir!")
-                pygame.mixer.music.load(random_motivation)
-                pygame.mixer.music.play()
+                #pygame.mixer.music.load(random_motivation)
+                #pygame.mixer.music.play()
+                numMotivated=1
+                break
+        if numMotivated==1:
+            break    
+if numGood==1:
+    pygame.mixer.music.load(random_good)
+    pygame.mixer.music.play()    
+elif numBad==1:
+    pygame.mixer.music.load(random_bad)
+    pygame.mixer.music.play()    
+elif numStress==1:
+    pygame.mixer.music.load(random_stress)
+    pygame.mixer.music.play()    
+elif numMotivated==1:
+    pygame.mixer.music.load(random_motivation)
+    pygame.mixer.music.play()    
 
 
                 
