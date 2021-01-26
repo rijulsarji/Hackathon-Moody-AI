@@ -67,7 +67,7 @@ random_motivation = random.choice(motivation_mp3)
 pygame.mixer.init()
 
 
-#speak("okay, "+name+" , say hello amanda to activate me")
+speak("okay, "+name+" , say hello Google to activate me")
 
 wake = "hello google"
 numGood = 0
@@ -94,8 +94,6 @@ while True:
         for good in GOOD_STRS:
             if good in comm:
                 speak("awesome! i have the perfect song in store for you")
-                #pygame.mixer.music.load(random_good)
-                #pygame.mixer.music.play()
                 numGood=1
                 break
         if numGood==1:
@@ -104,8 +102,6 @@ while True:
         for bad in BAD_STRS:
             if bad in comm:
                 speak("let me cheer you up by playing a wonderful song!")
-                #pygame.mixer.music.load(random_bad)
-                #pygame.mixer.music.play()
                 numBad=1
                 break
         if numBad==1:
@@ -114,8 +110,6 @@ while True:
         for stress in STRESS_STRS:
             if stress in comm:
                 speak("dont feel low. I will play something to uplift your mind.")
-                #pygame.mixer.music.load(random_stress)
-                #pygame.mixer.music.play()
                 numStress=1
                 break
         if numStress==1:
@@ -123,8 +117,6 @@ while True:
         for motivation in MOTIVATION_STRS:
             if motivation in comm:
                 speak("here you go sir!")
-                #pygame.mixer.music.load(random_motivation)
-                #pygame.mixer.music.play()
                 numMotivated=1
                 break
         if numMotivated==1:
