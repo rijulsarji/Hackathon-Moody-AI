@@ -1,4 +1,3 @@
-#comment
 import time
 import os
 import playsound
@@ -43,26 +42,26 @@ def get_audio():
     return command
 
 
-speak("hello illuminati. how are you feeling today?")
+#speak("hello illuminati. how are you feeling today?")
 name = "illuminati"
 
 my_dir = os.getcwd()
 
 
 #songs directory
-good_path = "C:/Users/rijul/output/moody_AI/"
-bad_path = "C:/Users/rijul/output/moody_AI/"
-stress_path = "C:/Users/rijul/output/moody_AI/"
-motivation_path = "C:/Users/rijul/output/moody_AI/"
+#good_path = "C:/Users/rijul/output/moody_AI/"
+#bad_path = "C:/Users/rijul/output/moody_AI/"
+#stress_path = "C:/Users/rijul/output/moody_AI/"
+#motivation_path = "C:/Users/rijul/output/moody_AI/"
 
-good_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('1.mp3')]
-bad_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('2.mp3')]
-stress_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('3.mp3')]
-motivation_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('4.mp3')]
+good_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('good.mp3')]
+bad_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('sad.mp3')]
+#stress_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('stress.mp3')]
+motivation_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('motiv.mp3')]
 
 random_good = random.choice(good_mp3)
 random_bad = random.choice(bad_mp3)
-random_stress = random.choice(stress_mp3)
+#random_stress = random.choice(stress_mp3)
 random_motivation = random.choice(motivation_mp3)
 
 pygame.mixer.init()
@@ -74,14 +73,14 @@ wake = "hello google"
 numGood = 0
 numBad = 0
 numStress = 0
-numMotivation = 0
+numMotivated = 0
 
 while True:
     text=get_audio().lower()
 
     GOOD_STRS = ["good","happy","lucky","great"]
     BAD_STRS = ["bad","sad","depressed"]
-    STRESS_STRS = ["tensed","stressed"]
+    #STRESS_STRS = ["tensed","stressed"]
     MOTIVATION_STRS = ["motivated","motivating"]
 
     if text.count(wake) > 0:
@@ -107,7 +106,7 @@ while True:
                 break
         if numBad==1:
             break
-                
+        '''        
         for stress in STRESS_STRS:
             if stress in comm:
                 speak("dont feel low. I will play something to uplift your mind.")
@@ -115,6 +114,7 @@ while True:
                 break
         if numStress==1:
             break
+        '''   
         for motivation in MOTIVATION_STRS:
             if motivation in comm:
                 speak("here you go sir!")
@@ -122,15 +122,15 @@ while True:
                 break
         if numMotivated==1:
             break    
+
 if numGood==1:
     pygame.mixer.music.load(random_good)
     pygame.mixer.music.play()    
+
 elif numBad==1:
     pygame.mixer.music.load(random_bad)
     pygame.mixer.music.play()    
-elif numStress==1:
-    pygame.mixer.music.load(random_stress)
-    pygame.mixer.music.play()    
+   
 elif numMotivated==1:
     pygame.mixer.music.load(random_motivation)
     pygame.mixer.music.play()    
