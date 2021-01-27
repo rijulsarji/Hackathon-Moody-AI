@@ -7,6 +7,7 @@ from gtts import gTTS
 import random
 import pygame
 #made some changes to check
+#lets see now what happens
 
 '''
 def speak(text):
