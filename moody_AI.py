@@ -1,4 +1,4 @@
-#1D
+#Manya Dogra
 import time
 import os
 import playsound
