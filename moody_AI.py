@@ -1,4 +1,3 @@
-#Manya Dogra
 import time
 import os
 import playsound
@@ -7,13 +6,6 @@ import speech_recognition as sr
 from gtts import gTTS
 import random
 import pygame
-
-#test
-#last time
-#made some changes to check
-#lets see now what happens
-
-#trying from different directory
 
 
 '''
