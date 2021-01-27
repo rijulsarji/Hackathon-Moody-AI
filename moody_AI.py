@@ -70,10 +70,12 @@ pygame.mixer.init()
 speak("okay, "+name+" , say hello Google to activate me")
 
 wake = "hello google"
+temp = 0
 numGood = 0
 numBad = 0
 numStress = 0
 numMotivated = 0
+
 
 while True:
     text=get_audio().lower()
@@ -135,7 +137,8 @@ elif numMotivated==1:
     pygame.mixer.music.load(random_motivation)
     pygame.mixer.music.play()    
 
-
+while temp == 0:
+    continue
                 
         
 
