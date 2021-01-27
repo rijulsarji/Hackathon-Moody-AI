@@ -71,6 +71,7 @@ pygame.mixer.init()
 speak("okay, "+name+" , say hello Google to activate me")
 
 wake = "hello google"
+pygame.init()
 temp = 0
 numGood = 0
 numBad = 0
@@ -139,7 +140,15 @@ elif numMotivated==1:
     pygame.mixer.music.play()    
 
 while temp == 0:
-    continue
+    keys=pygame.key.get_pressed()
+    char=input()
+    if char=="pause":#keys[pygame.K_ESCAPE]:
+        #break
+        pygame.mixer.music.pause()
+    elif char=="play":
+        pygame.mixer.music.unpause()
+    else:
+        continue
                 
         
 
