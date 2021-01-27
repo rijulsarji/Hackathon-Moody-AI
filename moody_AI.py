@@ -1,3 +1,4 @@
+#1D
 import time
 import os
 import playsound
