@@ -78,78 +78,85 @@ numBad = 0
 numStress = 0
 numMotivated = 0
 
+while temp==0:    
+    while True:
+        text=get_audio().lower()
 
-while True:
-    text=get_audio().lower()
+        GOOD_STRS = ["good","happy","lucky","great"]
+        BAD_STRS = ["bad","sad","depressed"]
+        #STRESS_STRS = ["tensed","stressed"]
+        MOTIVATION_STRS = ["motivated","motivating"]
 
-    GOOD_STRS = ["good","happy","lucky","great"]
-    BAD_STRS = ["bad","sad","depressed"]
-    #STRESS_STRS = ["tensed","stressed"]
-    MOTIVATION_STRS = ["motivated","motivating"]
+        if text.count(wake) > 0:
+            speak("hello, "+name+" ,how can i help you?")
+            try:
+                comm = get_audio().lower()
+            except :
+                speak("sorry i didn't hear you")
+                continue
 
-    if text.count(wake) > 0:
-        speak("hello, "+name+" ,how can i help you?")
-        try:
-            comm = get_audio().lower()
-        except :
-            speak("sorry i didn't hear you")
+            for good in GOOD_STRS:
+                if good in comm:
+                    speak("awesome! i have the perfect song in store for you")
+                    numGood=1
+                    break
+            if numGood==1:
+                break
+
+            for bad in BAD_STRS:
+                if bad in comm:
+                    speak("let me cheer you up by playing a wonderful song!")
+                    numBad=1
+                    break
+            if numBad==1:
+                break
+            '''        
+            for stress in STRESS_STRS:
+                if stress in comm:
+                    speak("dont feel low. I will play something to uplift your mind.")
+                    numStress=1
+                    break
+            if numStress==1:
+                break
+            '''   
+            for motivation in MOTIVATION_STRS:
+                if motivation in comm:
+                    speak("here you go sir!")
+                    numMotivated=1
+                    break
+            if numMotivated==1:
+                break    
+
+    if numGood==1:
+        pygame.mixer.music.load(random_good)
+        pygame.mixer.music.play()    
+
+    elif numBad==1:
+        pygame.mixer.music.load(random_bad)
+        pygame.mixer.music.play()    
+       
+    elif numMotivated==1:
+        pygame.mixer.music.load(random_motivation)
+        pygame.mixer.music.play()    
+
+    while temp == 0:
+        keys=pygame.key.get_pressed()
+        char=input()
+        if char=="pause":#keys[pygame.K_ESCAPE]:
+            #break
+            pygame.mixer.music.pause()
+        elif char=="play":
+            pygame.mixer.music.unpause()
+        elif char=="exit"or"Exit"or"EXIT":
+            break
+        else:
             continue
-
-        for good in GOOD_STRS:
-            if good in comm:
-                speak("awesome! i have the perfect song in store for you")
-                numGood=1
-                break
-        if numGood==1:
-            break
-
-        for bad in BAD_STRS:
-            if bad in comm:
-                speak("let me cheer you up by playing a wonderful song!")
-                numBad=1
-                break
-        if numBad==1:
-            break
-        '''        
-        for stress in STRESS_STRS:
-            if stress in comm:
-                speak("dont feel low. I will play something to uplift your mind.")
-                numStress=1
-                break
-        if numStress==1:
-            break
-        '''   
-        for motivation in MOTIVATION_STRS:
-            if motivation in comm:
-                speak("here you go sir!")
-                numMotivated=1
-                break
-        if numMotivated==1:
-            break    
-
-if numGood==1:
-    pygame.mixer.music.load(random_good)
-    pygame.mixer.music.play()    
-
-elif numBad==1:
-    pygame.mixer.music.load(random_bad)
-    pygame.mixer.music.play()    
-   
-elif numMotivated==1:
-    pygame.mixer.music.load(random_motivation)
-    pygame.mixer.music.play()    
-
-while temp == 0:
-    keys=pygame.key.get_pressed()
-    char=input()
-    if char=="pause":#keys[pygame.K_ESCAPE]:
-        #break
-        pygame.mixer.music.pause()
-    elif char=="play":
-        pygame.mixer.music.unpause()
+    print("Enter 'E'to exit\nEnter 'R' to restart")
+    string=input()
+    if string=="E"or"e":
+        break
     else:
         continue
-                
         
 
 
