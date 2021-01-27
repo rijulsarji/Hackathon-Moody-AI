@@ -6,6 +6,7 @@ import speech_recognition as sr
 from gtts import gTTS
 import random
 import pygame
+#made some changes to check
 
 '''
 def speak(text):
