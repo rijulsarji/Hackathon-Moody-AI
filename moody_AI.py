@@ -78,8 +78,10 @@ numBad = 0
 numStress = 0
 numMotivated = 0
 
-while temp==0:    
+while temp==0:
+    print("bye")
     while True:
+        print("hello")
         text=get_audio().lower()
 
         GOOD_STRS = ["good","happy","lucky","great"]
@@ -151,12 +153,12 @@ while temp==0:
             break
         else:
             continue
+    
     print("Enter 'E'to exit\nEnter 'R' to restart")
     string=input()
     if string=="E"or"e":
         break
-    else:
-        continue
+    continue
         
 
 
