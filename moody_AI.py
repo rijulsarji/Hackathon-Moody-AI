@@ -65,6 +65,10 @@ random_bad = random.choice(bad_mp3)
 #random_stress = random.choice(stress_mp3)
 random_motivation = random.choice(motivation_mp3)
 
+choices = [0,1,2]
+random_recom = random.choice(choices)
+numRecom=0
+
 pygame.mixer.init()
 
 
@@ -78,35 +82,8 @@ numBad = 0
 numStress = 0
 numMotivated = 0
 
-<<<<<<< HEAD
 while temp==0:
     print("bye")
-=======
-
-
-while True:
-    text=get_audio().lower()
-
-    GOOD_STRS = ["good","happy","lucky","great"]
-    BAD_STRS = ["bad","sad","depressed"]
-    #STRESS_STRS = ["tensed","stressed"]
-    MOTIVATION_STRS = ["low","demotivated"]
-
-    if text.count(wake) > 0:
-        speak("hello, "+name+" ,How are you feeling today?")
-        try:
-            comm = get_audio().lower()
-        except :
-            speak("sorry i didn't hear you")
-            continue
-
-        for good in GOOD_STRS:
-            if good in comm:
-                speak("awesome! i have the perfect song in store for you")
-                numGood=1
-
-while temp==0:    
->>>>>>> 70ce99d3e60cf7a007554f5423e45c524b1a4dd2
     while True:
         print("hello")
         text=get_audio().lower()
@@ -130,7 +107,6 @@ while temp==0:
                     numGood=1
                     break
             if numGood==1:
-
                 break
 
             for bad in BAD_STRS:
@@ -140,32 +116,28 @@ while temp==0:
                     break
             if numBad==1:
                 break
-
-        if numBad==1:
-            break
-        '''        
-        for stress in STRESS_STRS:
-            if stress in comm:
-                speak("Relax. I will play something to uplift your mind.")
-                numStress=1
-
             '''        
-        for stress in STRESS_STRS:
+            for stress in STRESS_STRS:
                 if stress in comm:
                     speak("dont feel low. I will play something to uplift your mind.")
                     numStress=1
                     break
             if numStress==1:
-
                 break
             '''   
             for motivation in MOTIVATION_STRS:
                 if motivation in comm:
-                    speak("here you go sir!")
-                    numMotivated=1
-                    break
-            if numMotivated==1:
-                break    
+                    if random_recom == 0:
+                        speak("here you go sir!")
+                        numMotivated=1
+                        break
+                    else:
+                        speak("i recommend watching rocky.")
+                        numRecom==1
+                        break
+                
+        if numMotivated==1 or numRecom==1:
+                    break    
 
     if numGood==1:
         pygame.mixer.music.load(random_good)
@@ -189,36 +161,6 @@ while temp==0:
             pygame.mixer.music.unpause()
         elif char=="exit"or"Exit"or"EXIT":
             break
-<<<<<<< HEAD
-        '''   
-        for motivation in MOTIVATION_STRS:
-            if motivation in comm:
-                if random.randint(0,2)==0:
-                   speak("Boy, Do I have the perfect playlist to get you motivated!")
-                   numMotivated=1
-                   break
-                else:
-                     speak( "I recommend watching Rocky , It is sure to get you motivated!")
-                     break       
-        if numMotivated==1:
-            break    
-
-if numGood==1:
-    pygame.mixer.music.load(random_good)
-    pygame.mixer.music.play()    
-
-elif numBad==1:
-    pygame.mixer.music.load(random_bad)
-    pygame.mixer.music.play()    
-   
-elif numMotivated==1:
-    pygame.mixer.music.load(random_motivation)
-    pygame.mixer.music.play()    
-
-while temp == 0:
-    continue
-                
-
         else:
             continue
     
@@ -226,13 +168,7 @@ while temp == 0:
     string=input()
     if string=="E"or"e":
         break
-<<<<<<< HEAD
     continue
-=======
-    else:
-        continue
-
->>>>>>> 70ce99d3e60cf7a007554f5423e45c524b1a4dd2
         
 
 
