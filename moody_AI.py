@@ -1,4 +1,3 @@
-#Manya Dogra
 import time
 import os
 import playsound
@@ -92,10 +91,10 @@ while True:
     GOOD_STRS = ["good","happy","lucky","great"]
     BAD_STRS = ["bad","sad","depressed"]
     #STRESS_STRS = ["tensed","stressed"]
-    MOTIVATION_STRS = ["motivated","motivating"]
+    MOTIVATION_STRS = ["low","demotivated"]
 
     if text.count(wake) > 0:
-        speak("hello, "+name+" ,how can i help you?")
+        speak("hello, "+name+" ,How are you feeling today?")
         try:
             comm = get_audio().lower()
         except :
@@ -120,7 +119,7 @@ while True:
         '''        
         for stress in STRESS_STRS:
             if stress in comm:
-                speak("dont feel low. I will play something to uplift your mind.")
+                speak("Relax. I will play something to uplift your mind.")
                 numStress=1
                 break
         if numStress==1:
@@ -128,9 +127,13 @@ while True:
         '''   
         for motivation in MOTIVATION_STRS:
             if motivation in comm:
-                speak("here you go sir!")
-                numMotivated=1
-                break
+                if random.randint(0,2)==0:
+                   speak("Boy, Do I have the perfect playlist to get you motivated!")
+                   numMotivated=1
+                   break
+                else:
+                     speak( "I recommend watching Rocky , It is sure to get you motivated!")
+                     break       
         if numMotivated==1:
             break    
 
