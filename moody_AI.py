@@ -1,3 +1,4 @@
+#importing libraries
 import time
 import os
 import playsound
@@ -7,7 +8,7 @@ from gtts import gTTS
 import random
 import pygame
 
-
+#using pyttsx3 engine for text-to-speech
 '''
 def speak(text):
     engine = pyttsx3.init()
@@ -18,6 +19,7 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 '''
+#using gTTS for engine for text-to-speech
 
 def speak(text):
     tts = gTTS(text = text, lang = 'en-us')
@@ -26,6 +28,7 @@ def speak(text):
     playsound.playsound(filename)
     os.remove(filename)
 
+#converting audio to text
 
 def get_audio():
     r = sr.Recognizer()
@@ -44,9 +47,10 @@ def get_audio():
 
 
 #speak("hello illuminati. how are you feeling today?")
-name = "illuminati"
 
-my_dir = os.getcwd()
+name = "illuminati" #name of the user
+
+my_dir = os.getcwd() #to get current directory for the music files
 
 
 #songs directory
@@ -55,43 +59,69 @@ my_dir = os.getcwd()
 #stress_path = "C:/Users/rijul/output/moody_AI/"
 #motivation_path = "C:/Users/rijul/output/moody_AI/"
 
+
+
+#specifying directory for music files
+
 good_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('good.mp3')]
 bad_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('sad.mp3')]
 #stress_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('stress.mp3')]
 motivation_mp3 = [os.path.join(my_dir, f) for f in os.listdir(my_dir) if f.endswith('motiv.mp3')]
+
+
+#randomising music files
 
 random_good = random.choice(good_mp3)
 random_bad = random.choice(bad_mp3)
 #random_stress = random.choice(stress_mp3)
 random_motivation = random.choice(motivation_mp3)
 
+
+#randomising choices other than music files
+
 choices = [0,1,2]
 random_recom = random.choice(choices)
 numRecom=0
 
-pygame.mixer.init()
+
+pygame.mixer.init() #initialise pygame.mixer module
 
 
-speak("okay, "+name+" , say hello Google to activate me")
+speak("okay, "+name+" , say hello Google to activate me") #introductory message
 
-wake = "hello google"
-pygame.init()
-temp = 0
+wake = "hello google" #wake command for the assistant
+
+
+pygame.init() #initialise pygame module
+
+temp = 0 #for creating an infinite loop
+
+
+#for breaking the respective loops
+
 numGood = 0
 numBad = 0
 numStress = 0
 numMotivated = 0
 
+
+#main loop starts
+
 while temp==0:
-    print("bye")
+
     while True:
-        print("hello")
+
+
         text=get_audio().lower()
+
+
+        #possible responses
 
         GOOD_STRS = ["good","happy","lucky","great"]
         BAD_STRS = ["bad","sad","depressed"]
         #STRESS_STRS = ["tensed","stressed"]
         MOTIVATION_STRS = ["motivated","motivating"]
+
 
         if text.count(wake) > 0:
             speak("hello, "+name+" ,how can i help you?")
@@ -101,13 +131,19 @@ while temp==0:
                 speak("sorry i didn't hear you")
                 continue
 
+            #good mood starts
+            
             for good in GOOD_STRS:
                 if good in comm:
                     speak("awesome! i have the perfect song in store for you")
                     numGood=1
                     break
+
             if numGood==1:
                 break
+
+            
+            #sad mood starts
 
             for bad in BAD_STRS:
                 if bad in comm:
@@ -116,6 +152,10 @@ while temp==0:
                     break
             if numBad==1:
                 break
+
+
+            #stress mood starts
+
             '''        
             for stress in STRESS_STRS:
                 if stress in comm:
@@ -125,6 +165,10 @@ while temp==0:
             if numStress==1:
                 break
             '''   
+
+
+            #motivation mood starts
+
             for motivation in MOTIVATION_STRS:
                 if motivation in comm:
                     if random_recom == 0:
@@ -137,7 +181,10 @@ while temp==0:
                         break
                 
         if numMotivated==1 or numRecom==1:
-                    break    
+                    break 
+
+
+    #conditions to play respective songs              
 
     if numGood==1:
         pygame.mixer.music.load(random_good)
@@ -164,6 +211,8 @@ while temp==0:
         else:
             continue
     
+    #condition to exit the program
+
     print("Enter 'E'to exit\nEnter 'R' to restart")
     string=input()
     if string=="E"or"e":
