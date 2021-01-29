@@ -3,7 +3,7 @@ import time
 import os
 import playsound
 import speech_recognition as sr
-#import pyttsx3
+import pyttsx3
 from gtts import gTTS
 import random
 import pygame
@@ -18,15 +18,17 @@ def speak(text):
     engine.setProperty('volume',2.0)    
     engine.say(text)
     engine.runAndWait()
-'''
+
 #using gTTS for engine for text-to-speech
 
 def speak(text):
     tts = gTTS(text = text, lang = 'en-us')
     filename = "voice.mp3"
-    tts.save(filename)
+        tts.save(filename)
     playsound.playsound(filename)
     os.remove(filename)
+'''
+
 
 #converting audio to text
 
@@ -87,7 +89,9 @@ numRecom=0
 pygame.mixer.init() #initialise pygame.mixer module
 
 
-speak("okay, "+name+" , say hello Google to activate me") #introductory message
+#speak("okay, "+name+" , say hello Google to activate me") #introductory message
+print("okay, "+name+" , say hello Google to activate me") #introductory message
+
 
 wake = "hello google" #wake command for the assistant
 
@@ -124,18 +128,21 @@ while temp==0:
 
 
         if text.count(wake) > 0:
-            speak("hello, "+name+" ,how can i help you?")
+            #speak("hello, "+name+" ,how can i help you?")
+            print("hello, "+name+" ,how can i help you?")
             try:
                 comm = get_audio().lower()
             except :
-                speak("sorry i didn't hear you")
+                #speak("sorry i didn't hear you")
+                print("sorry i didn't hear you")
                 continue
 
             #good mood starts
             
             for good in GOOD_STRS:
                 if good in comm:
-                    speak("awesome! i have the perfect song in store for you")
+                    #speak("awesome! i have the perfect song in store for you")
+                    print(("awesome! i have the perfect song in store for you"))
                     numGood=1
                     break
 
@@ -147,7 +154,8 @@ while temp==0:
 
             for bad in BAD_STRS:
                 if bad in comm:
-                    speak("let me cheer you up by playing a wonderful song!")
+                    #speak("let me cheer you up by playing a wonderful song!")
+                    print("let me cheer you up by playing a wonderful song!")
                     numBad=1
                     break
             if numBad==1:
@@ -172,11 +180,13 @@ while temp==0:
             for motivation in MOTIVATION_STRS:
                 if motivation in comm:
                     if random_recom == 0:
-                        speak("here you go sir!")
+                        #speak("here you go sir!")
+                        print("here you go sir!")
                         numMotivated=1
                         break
                     else:
-                        speak("i recommend watching rocky.")
+                        #speak("i recommend watching rocky.")
+                        print("i recommend watching rocky.")
                         numRecom==1
                         break
                 
