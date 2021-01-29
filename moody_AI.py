@@ -3,13 +3,14 @@ import time
 import os
 import playsound
 import speech_recognition as sr
-#import pyttsx3
+import pyttsx3
 from gtts import gTTS
 import random
+import win32api
 import pygame
 
 #using pyttsx3 engine for text-to-speech
-'''
+
 def speak(text):
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
@@ -18,9 +19,9 @@ def speak(text):
     engine.setProperty('volume',2.0)    
     engine.say(text)
     engine.runAndWait()
-'''
 #using gTTS for engine for text-to-speech
 
+'''
 def speak(text):
     tts = gTTS(text = text, lang = 'en-us')
     filename = "voice.mp3"
@@ -28,6 +29,7 @@ def speak(text):
     playsound.playsound(filename)
     os.remove(filename)
 
+'''
 #converting audio to text
 
 def get_audio():
@@ -120,7 +122,7 @@ while temp==0:
         GOOD_STRS = ["good","happy","lucky","great"]
         BAD_STRS = ["bad","sad","depressed"]
         #STRESS_STRS = ["tensed","stressed"]
-        MOTIVATION_STRS = ["motivated","motivating"]
+        MOTIVATION_STRS = ["low","demotivated"]
 
 
         if text.count(wake) > 0:
